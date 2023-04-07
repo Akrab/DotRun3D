@@ -9,8 +9,4 @@ namespace DotRun3d.Player
     public interface IPlayerView { }
 
 
-    public struct EPlayerComp
-    {
-        public IPlayerView playerView { get; set; }
-    }
 }

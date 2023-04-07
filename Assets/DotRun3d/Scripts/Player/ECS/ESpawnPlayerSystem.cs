@@ -17,9 +17,7 @@ namespace DonRun3D.ECS.Player
         {
             var world = systems.GetWorld();
 
-            var playersFilter = world.Filter<EPlayerComp>().End();
-
-            if (playersFilter.GetEntitiesCount() > 0)
+            if (!IsCreate(systems))
                 return;
 
             var pool = world.GetPool<EPlayerComp>();
@@ -29,6 +27,19 @@ namespace DonRun3D.ECS.Player
 
             ref EPlayerComp pl = ref pool.Add(ecsIndex);
             pl.playerView = _playerView;
+        }
+
+        private bool IsCreate(IEcsSystems systems)
+        {
+            var world = systems.GetWorld();
+
+            var create = world.Filter<EPlayerCreate>().End();
+
+            var count = create.GetEntitiesCount();
+            create.Delete(world.GetPool<EPlayerCreate>());
+
+            return count > 0;
+
         }
     }
 }
