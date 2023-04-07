@@ -14,3 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerView: {fileID: 4735860841525864040, guid: 1d51e08ab8f776146a5cfe721e0ec426,
     type: 3}
+  _columnData:
+    data:
+    - name: Cylinder
+      id: 9d56e2e9cc4f
+      view: {fileID: 2872615689125405521, guid: 9c6431cd60c67384db583ebe3c9c0985,
+        type: 3}
