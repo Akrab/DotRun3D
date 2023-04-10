@@ -7,5 +7,10 @@ namespace DonRun3D.World.Column
     {
         [SerializeField] private Transform _playerTarget;
         [SerializeField] private Transform _bonusTarget;
+
+        protected override void setup()
+        {
+            Debug.LogError("ColumnView");
+        }
     }
 }

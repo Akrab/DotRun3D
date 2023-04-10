@@ -1,11 +1,12 @@
 ﻿using Akrab.UI;
 using Leopotam.EcsLite;
+using System.Diagnostics.Eventing;
 
 namespace DonRun3D.ECS.UI
 {
     sealed class EPlayGameSystem : EBaseUISystem
     {
-        public override  void Run(IEcsSystems systems)
+        public override void Run(IEcsSystems systems)
         {
             var world = systems.GetWorld();
 
@@ -21,8 +22,6 @@ namespace DonRun3D.ECS.UI
                 ref EPlayGameClickComp kz = ref pool.Get(entity);
                 pool.Del(entity);
             }
-
-
 
             var mainForm = FindForm<MainUI>(systems);
             mainForm.Hide();
@@ -52,6 +51,7 @@ namespace DonRun3D.ECS.UI
 
             return default(T);
         }
+
 
         public abstract void Run(IEcsSystems systems);
     }

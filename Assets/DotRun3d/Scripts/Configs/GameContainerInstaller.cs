@@ -15,6 +15,9 @@ public class GameContainerInstaller : ScriptableObjectInstaller<GameContainerIns
     public override void InstallBindings()
     {
         Container.Bind<IPlayerView>().FromComponentsInNewPrefab(_playerView).AsSingle();
+
+        Container.Bind<Columns>().FromInstance(_columnData).AsSingle();
+
     }
 
 }

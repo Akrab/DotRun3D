@@ -7,9 +7,6 @@ namespace DonRun3D.Data
 {
     public class GameData 
     {
-
-
-
         public enum State
         {
             None,

@@ -31,15 +31,7 @@ namespace DonRun3D.ECS.Player
 
         private bool IsCreate(IEcsSystems systems)
         {
-            var world = systems.GetWorld();
-
-            var create = world.Filter<EPlayerCreate>().End();
-
-            var count = create.GetEntitiesCount();
-            create.Delete(world.GetPool<EPlayerCreate>());
-
-            return count > 0;
-
+            return systems.Have<EPlayerCreate>();
         }
     }
 }

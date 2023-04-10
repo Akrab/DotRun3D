@@ -1,4 +1,5 @@
 using Akrab;
+using DonRun3D.ECS;
 using DonRun3D.ECS.LevelContructor;
 using DonRun3D.ECS.Player;
 using DonRun3D.ECS.UI;
@@ -27,13 +28,23 @@ namespace DonRun3D.System
             _gameFixedUpdateSys.Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem());
 #endif
 
+
+          
+
             _gameUpdateSys.Add(new EPlayGameSystem());
             _gameUpdateSys.Add(new ESpawnPlayerSystem(_diContainer));
-            _gameUpdateSys.Add(new ELevelContructSystem(_diContainer));
+            _gameUpdateSys.Add(_diContainer.Instantiate<EcsLevelContructSystem>());
+            _gameUpdateSys.Add(new EcsGameManagerSystem(_diContainer));
+            
 
 
             _gameUpdateSys.Init();
             _gameFixedUpdateSys.Init();
+
+            var gameManager = _worldGame.NewEntity();
+            var pool = _worldGame.GetPool<EcsGameManagerComponent>();
+            pool.Add(gameManager);
+            
         }
 
         public override void CUpdate()

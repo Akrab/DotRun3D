@@ -9,6 +9,9 @@ namespace DonRun3D.World.Column
     {
         public List<ColumnSettingData> data = new List<ColumnSettingData>();
 
+        public float Offset = 2f;
+        
+
     }
     [Serializable]
     public class ColumnSettingData

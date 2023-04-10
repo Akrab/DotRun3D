@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelConstructorView: {fileID: 2068492875}
+  worldFactory: {fileID: 0}
 --- !u!4 &556985550
 Transform:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ namespace DonRun3D.LevelConstructor
 
     public interface ILevelConstructorView
     {
-
+        public Transform trmParent { get; }
     }
 
     public class LevelConstructorView : CustomBehaviour, ILevelConstructorView
@@ -20,7 +20,10 @@ namespace DonRun3D.LevelConstructor
         private int ecsIndex = -1;
 
         [SerializeField] private Transform _worldRoot;
-        
+
+
+        public Transform trmParent => _worldRoot;
+
 
         [Inject]
         public void Initialize()

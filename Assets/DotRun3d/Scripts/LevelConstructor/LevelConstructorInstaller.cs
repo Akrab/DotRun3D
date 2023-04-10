@@ -8,7 +8,7 @@ namespace DonRun3D.LevelConstructor
         [SerializeField] private LevelConstructorView levelConstructorView;
         public override void InstallBindings()
         {
-            Container.Bind<ILevelConstructorView>().FromInstance(levelConstructorView).AsSingle();
+            Container.Bind<ILevelConstructorView>().FromInstance(levelConstructorView).AsSingle().NonLazy();
         }
     }
 }
