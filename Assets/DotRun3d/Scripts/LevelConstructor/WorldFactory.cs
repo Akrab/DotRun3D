@@ -1,7 +1,5 @@
-﻿using Akrab;
-using DonRun3D;
+﻿using DonRun3D;
 using DonRun3D.ECS.LevelContructor;
-using DonRun3D.LevelConstructor;
 using DonRun3D.World.Column;
 using DotRun3d.ECS.World;
 using Leopotam.EcsLite;
@@ -15,12 +13,10 @@ namespace DotRun3d.LevelConstructor
 
         [Inject] private DiContainer _container;
 
-
+        private int nameIndex = 0;
         public ColumnContainer Create(Vector3 position)
         {
-
-             ELevelConstrComp comp;
-            _container.Resolve<EcsWorld>().GetFirstComp(out comp);
+            _container.Resolve<EcsWorld>().GetFirstComp(out ELevelConstrComp comp);
 
             var parentSpawn = comp.view.trmParent;
             var columns = _container.Resolve<Columns>();
@@ -32,14 +28,16 @@ namespace DotRun3d.LevelConstructor
             var entity = ecsWorld.NewEntity();
 
             var pool = ecsWorld.GetPool<EColumnContainerComponent>();
-            pool.Add(entity);
-
-            return new ColumnContainer {
+            ref var columnComp = ref pool.Add(entity);
+            view.gameObject.name += "_" + nameIndex++;
+            
+            columnComp.container = new ColumnContainer {
                 id = baseColumn.id,
                 entity = entity,
                 isPool = true,
                 view = view
             };
+            return columnComp.container;
         }
     }
 }

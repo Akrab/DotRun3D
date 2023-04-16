@@ -10,9 +10,19 @@ namespace DonRun3D.World.Column
         public List<ColumnSettingData> data = new List<ColumnSettingData>();
 
         public float Offset = 2f;
-        
+
+        public List<ColorMaterials> colorMaterials = new List<ColorMaterials>();
 
     }
+
+    [Serializable]
+    public class ColorMaterials
+    {
+        public ColorType color;
+        public Material material;
+    }
+    
+    
     [Serializable]
     public class ColumnSettingData
     {

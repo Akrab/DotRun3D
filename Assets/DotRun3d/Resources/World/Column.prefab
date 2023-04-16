@@ -109,8 +109,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4a00f610c5cce498d5cb0f841e21c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerTarget: {fileID: 2872615688213799319}
-  _bonusTarget: {fileID: 2872615687826634463}
+  meshRenderer: {fileID: 2872615689191889710}
+  playerTarget: {fileID: 2872615688213799319}
+  bonusTarget: {fileID: 2872615687826634463}
 --- !u!1 &2872615689191889747
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +125,7 @@ GameObject:
   - component: {fileID: 2872615689191889710}
   - component: {fileID: 2872615689191889745}
   - component: {fileID: 2872615689191889708}
+  - component: {fileID: 4971570625420695057}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -225,3 +227,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &4971570625420695057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2872615689191889747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 679efe3b5e4c46a69fbb5e6323c6ee86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

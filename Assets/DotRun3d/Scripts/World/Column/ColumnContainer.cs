@@ -11,6 +11,7 @@ namespace DonRun3D.World.Column
         public string id;
         public bool isPool = false;
         public int entity;
+        public int line;
         public ColumnView view;
 
     }

@@ -20,3 +20,13 @@ MonoBehaviour:
       id: 9d56e2e9cc4f
       view: {fileID: 2872615689125405521, guid: 9c6431cd60c67384db583ebe3c9c0985,
         type: 3}
+    Offset: 2
+    colorMaterials:
+    - color: 0
+      material: {fileID: 2100000, guid: 1f85ed041d056c941bd4197c0ddb2114, type: 2}
+    - color: 1
+      material: {fileID: 2100000, guid: 41a65ab669daac1458b153ad117cedd1, type: 2}
+    - color: 2
+      material: {fileID: 2100000, guid: 230c1423882b2e44aa75e9a5b4583753, type: 2}
+    - color: 3
+      material: {fileID: 2100000, guid: ca41f3f370a4a654fa8f32ce0c03c134, type: 2}

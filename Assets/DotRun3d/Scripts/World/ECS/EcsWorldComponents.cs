@@ -1,4 +1,10 @@
-﻿namespace DotRun3d.ECS.World
+﻿using DonRun3D.World.Column;
+
+namespace DotRun3d.ECS.World
 {
-    public struct EColumnContainerComponent { }
+    public struct EColumnContainerComponent
+    {
+        public ColumnContainer container;
+
+    }
 }

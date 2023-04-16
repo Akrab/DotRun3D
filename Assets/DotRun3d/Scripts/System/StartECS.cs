@@ -11,70 +11,67 @@ namespace DonRun3D.System
 {
     public class StartECS : CustomBehaviour
     {
-        [Inject] private EcsWorld _worldGame;
-        [Inject] private DiContainer _diContainer;
+        [Inject] private EcsWorld worldGame;
+        [Inject] private DiContainer diContainer;
 
-        private EcsSystems _gameUpdateSys;
-        private EcsSystems _gameFixedUpdateSys;
+        private EcsSystems gameUpdateSys;
+        private EcsSystems gameFixedUpdateSys;
 
         [Inject]
         public void Initialize()
         {
-            _gameUpdateSys = new EcsSystems(_worldGame);
+            gameUpdateSys = new EcsSystems(worldGame);
 
-            _gameFixedUpdateSys = new EcsSystems(_worldGame);
+            gameFixedUpdateSys = new EcsSystems(worldGame);
 #if UNITY_EDITOR
-            _gameUpdateSys.Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem());
-            _gameFixedUpdateSys.Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem());
+            gameUpdateSys.Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem());
+            gameFixedUpdateSys.Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem());
 #endif
 
-
-          
-
-            _gameUpdateSys.Add(new EPlayGameSystem());
-            _gameUpdateSys.Add(new ESpawnPlayerSystem(_diContainer));
-            _gameUpdateSys.Add(_diContainer.Instantiate<EcsLevelContructSystem>());
-            _gameUpdateSys.Add(new EcsGameManagerSystem(_diContainer));
             
-
-
-            _gameUpdateSys.Init();
-            _gameFixedUpdateSys.Init();
-
-            var gameManager = _worldGame.NewEntity();
-            var pool = _worldGame.GetPool<EcsGameManagerComponent>();
-            pool.Add(gameManager);
+            gameUpdateSys.Add(new EPlayGameSystem());
+            gameUpdateSys.Add( diContainer.Instantiate<ESpawnPlayerSystem>());
+            gameUpdateSys.Add(diContainer.Instantiate<EcsLevelConstructSystem>());
+            gameUpdateSys.Add(diContainer.Instantiate<EcsClickToObjSystem>());
+            gameUpdateSys.Add(diContainer.Instantiate<EcsGameManagerSystem>());
             
+            gameUpdateSys.Init();
+            gameFixedUpdateSys.Init();
+
+            var gameManager = worldGame.NewEntity();
+            var pool = worldGame.GetPool<EcsGameManagerComponent>();
+            ref var managerComp = ref pool.Add(gameManager);
+            managerComp.gameData = new GameData() {currentColor = ColorType.GREEN};
         }
 
         public override void CUpdate()
         {
-            _gameUpdateSys?.Run();
+            gameUpdateSys?.Run();
         }
 
         public override void CFixedUpdate()
         {         
-            _gameFixedUpdateSys?.Run();
+            gameFixedUpdateSys?.Run();
         }
         void OnDestroy()
         {
 
-            if (_gameUpdateSys != null)
+            if (gameUpdateSys != null)
             {
-                _gameUpdateSys.Destroy();
-                _gameUpdateSys = null;
+                gameUpdateSys.Destroy();
+                gameUpdateSys = null;
             }
 
-            if (_gameFixedUpdateSys != null)
+            if (gameFixedUpdateSys != null)
             {
-                _gameFixedUpdateSys.Destroy();
-                _gameFixedUpdateSys = null;
+                gameFixedUpdateSys.Destroy();
+                gameFixedUpdateSys = null;
             }
 
-            if (_worldGame != null)
+            if (worldGame != null)
             {
-                _worldGame.Destroy();
-                _worldGame = null;
+                worldGame.Destroy();
+                worldGame = null;
             }
         }
     }
