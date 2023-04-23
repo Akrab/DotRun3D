@@ -10,9 +10,16 @@ namespace DonRun3D.ECS
 
     public struct EcsStartupLoadEnd { }
 
+    public struct EcsClickNextLine { }
+
     public struct EcsClick
     {
         public IClickable clickable;
+    }
+
+    public struct EcsLockClick
+    {
+        
     }
 
 }

@@ -1,10 +1,11 @@
+
+using Leopotam.EcsLite;
 using UnityEngine;
 
 namespace DonRun3D.World.Column
 {
-    public interface IColumn : IClickable{}
     public class ColumnClick : MonoBehaviour, IColumn
     {
-        
+        public EcsPackedEntity entity => GetComponentInParent<IEcsEntityAccept>().entity;
     }
 }

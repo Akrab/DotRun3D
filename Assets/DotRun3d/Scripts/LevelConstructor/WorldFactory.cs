@@ -33,10 +33,12 @@ namespace DotRun3d.LevelConstructor
             
             columnComp.container = new ColumnContainer {
                 id = baseColumn.id,
-                entity = entity,
+                entity = ecsWorld.PackEntity (entity),
                 isPool = true,
                 view = view
             };
+            
+            view.SetEntity(columnComp.container.entity);
             return columnComp.container;
         }
     }

@@ -29,7 +29,7 @@ namespace Akrab.UI
         protected Canvas canvas;
         protected CanvasGroup canvasGroup;
         [Inject] protected EcsWorld _ecsWorld;
-        protected int ecsIndex;
+        protected EcsPackedEntity ecsPackEntity;
         public void Disable()
         {
             gameObject.SetActive(false);
@@ -42,9 +42,10 @@ namespace Akrab.UI
         [Inject]
         public void Initialize()
         {
-            ecsIndex = _ecsWorld.NewEntity();
+            var entity = _ecsWorld.NewEntity();
+            ecsPackEntity = _ecsWorld.PackEntity( entity);
             var pool = _ecsWorld.GetPool<EFormComp>();
-            ref EFormComp c1 = ref pool.Add(ecsIndex);
+            ref EFormComp c1 = ref pool.Add(entity);
             c1.form = this;
         }
 

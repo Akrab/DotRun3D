@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DonRun3D.ECS.LevelContructor;
 using DonRun3D.ECS.Player;
 using DonRun3D.World.Column;
@@ -48,7 +49,7 @@ namespace DonRun3D
                 pool.Add(item);
 
         }
-
+        
         public static void GetFirstComp<T>(this EcsWorld ecsWorld, out T res) where T : struct
         {
             var filter = ecsWorld.Filter<T>().End();
@@ -75,8 +76,8 @@ namespace DonRun3D
         {
             return data.Find(D => D.color == color).material;
         }
-        
-        public static Material GetRandomMaterial(this List<ColorMaterials> data)
+
+        public static ColorMaterial GetRandomMaterial(this List<ColorMaterials> data)
         {
             Dictionary<ColorType, int> weights = new Dictionary<ColorType, int>(data.Count);
 
@@ -89,7 +90,8 @@ namespace DonRun3D
 
             var color = WeightedRandomizer.From(weights).TakeOne();
 
-            return data.FindMaterial(color);
+            return new ColorMaterial() { material = data.FindMaterial(color), colorType = color };
         }
+
     }
 }

@@ -27,13 +27,14 @@ namespace DonRun3D.System
             gameUpdateSys.Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem());
             gameFixedUpdateSys.Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem());
 #endif
-
             
             gameUpdateSys.Add(new EPlayGameSystem());
             gameUpdateSys.Add( diContainer.Instantiate<ESpawnPlayerSystem>());
+            gameUpdateSys.Add(diContainer.Instantiate<EcsGameManagerSystem>());
             gameUpdateSys.Add(diContainer.Instantiate<EcsLevelConstructSystem>());
             gameUpdateSys.Add(diContainer.Instantiate<EcsClickToObjSystem>());
-            gameUpdateSys.Add(diContainer.Instantiate<EcsGameManagerSystem>());
+            gameUpdateSys.Add(diContainer.Instantiate<EcsMoveToTextLineSystem>());
+            gameUpdateSys.Add(diContainer.Instantiate<EcsLevelUpdateSystem>());
             
             gameUpdateSys.Init();
             gameFixedUpdateSys.Init();

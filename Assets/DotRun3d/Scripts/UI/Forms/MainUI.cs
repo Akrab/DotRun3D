@@ -1,4 +1,5 @@
 using DonRun3D.ECS.UI;
+using Leopotam.EcsLite;
 using PG.UI;
 using UnityEngine;
 
@@ -18,8 +19,9 @@ namespace Akrab.UI
         private void Play()
         {
             var pool = _ecsWorld.GetPool<EPlayGameClickComp>();
-            pool.Add(ecsIndex);
-
+            
+            if(ecsPackEntity.Unpack(_ecsWorld, out int unpacked))
+                pool.Add(unpacked);
         }
     }
 }
