@@ -14,6 +14,6 @@ namespace DonRun3D.ECS.LevelContructor
     }
 
     public struct ECreateLevelComp { }
-    public struct EUpdateLevelComp { }
-    
+    public struct EHideLevelComp { }
+    public struct EUpdateRuntimeLevelComp { }
 }

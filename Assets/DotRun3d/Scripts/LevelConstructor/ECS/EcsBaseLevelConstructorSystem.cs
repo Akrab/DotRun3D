@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using DonRun3D.World.Column;
 using DotRun3d;
 using DotRun3d.LevelConstructor;
+using DotRun3d.Scripts.World;
 using Leopotam.EcsLite;
 using UnityEngine;
 using Zenject;
@@ -10,7 +11,7 @@ namespace DonRun3D.ECS.LevelContructor
 {
     public class EcsBaseLevelConstructorSystem
     {
-        [Inject] protected readonly Columns columns;
+        [Inject] protected readonly WorldData worldData;
         [Inject] protected readonly CameraManager cameraManager;
         [Inject] protected readonly WorldFactory worldFactory;
         [Inject] protected readonly EcsWorld ecsWorld;
@@ -54,17 +55,20 @@ namespace DonRun3D.ECS.LevelContructor
         {
             var mainIndex = GetRandomMainIndex();
             int index = 0;
+
+            var colorMaterials = worldData.GetFirsData().colorMaterials;
+            
             foreach (var column in line.data)
             {
                 ColorMaterial colorMaterial = null;
                 if (index == mainIndex)
                 {
                     colorMaterial = new ColorMaterial();
-                    colorMaterial.material = columns.colorMaterials.FindMaterial(mainColor);
+                    colorMaterial.material = colorMaterials.FindMaterial(mainColor);
                     colorMaterial.colorType = mainColor;
                 }
                 else
-                    colorMaterial = columns.colorMaterials.GetRandomMaterial();
+                    colorMaterial = colorMaterials.GetRandomMaterial();
 
                 column.colorMaterial = colorMaterial;
                 column.view.SetMaterial(colorMaterial.material);

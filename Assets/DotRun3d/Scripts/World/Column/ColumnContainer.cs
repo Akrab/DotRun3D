@@ -11,8 +11,6 @@ namespace DonRun3D.World.Column
 
     public class ColumnContainer
     {
-        public string id;
-        public bool isPool = false;
         public EcsPackedEntity entity;
         public int line;
         public ColorMaterial colorMaterial;
@@ -23,12 +21,15 @@ namespace DonRun3D.World.Column
     public interface IColumnLine : ILineContainer
     {
         public List<ColumnContainer> data { get; }
+      
     }
 
-    public class LineContainer : IColumnLine
+    public class LineContainer : IColumnLine, IPosition
     {        
         private List<ColumnContainer> _data;
         public int line { get; set; }
+
+        public bool IsPool { get; set; } = false;
 
         public EcsPackedEntity entity { get; set; }
         public List<ColumnContainer> data => _data;
@@ -37,23 +38,21 @@ namespace DonRun3D.World.Column
         {
             _data = new List<ColumnContainer>(count);
         }
+
+        public Vector3 position => _data[1].view.transform.position;
     }
 
     public interface ILineContainer
     {
         int line { get; set; }
+        bool IsPool { get; set; }
         EcsPackedEntity entity { get; set; }
         
     }
 
     public interface IPosition
     {
-        public Vector3 position { get; set; }
-        
-    }
-
-    public interface IColorBorder
-    {
+        public Vector3 position { get;}
         
     }
     

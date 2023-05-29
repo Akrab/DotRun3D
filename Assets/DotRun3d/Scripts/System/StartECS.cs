@@ -33,9 +33,10 @@ namespace DonRun3D.System
             gameUpdateSys.Add(diContainer.Instantiate<EcsGameManagerSystem>());
             gameUpdateSys.Add(diContainer.Instantiate<EcsLevelConstructSystem>());
             gameUpdateSys.Add(diContainer.Instantiate<EcsClickToObjSystem>());
-            gameUpdateSys.Add(diContainer.Instantiate<EcsMoveToTextLineSystem>());
-            gameUpdateSys.Add(diContainer.Instantiate<EcsLevelUpdateSystem>());
-            
+            gameUpdateSys.Add(diContainer.Instantiate<EcsMoveToNextLineSystem>());
+            gameUpdateSys.Add(diContainer.Instantiate<EcsLevelHideObjSystem>());
+            gameUpdateSys.Add(diContainer.Instantiate<EcsLevelRuntimeUpdateSystem>());
+
             gameUpdateSys.Init();
             gameFixedUpdateSys.Init();
 

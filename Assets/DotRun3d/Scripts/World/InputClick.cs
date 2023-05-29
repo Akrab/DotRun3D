@@ -20,7 +20,6 @@ namespace DonRun3D
         private RaycastHit hit;
         private Ray ray;
 
-        public bool lockClick { get; set; } = false;
 
         protected override void setup()
         {
@@ -29,8 +28,6 @@ namespace DonRun3D
 
         private void OnActionTrigger(InputAction.CallbackContext context)
         {
-            if(lockClick)
-                return;
 
             //Debug.LogError(context);
             if(!context.performed || context.action.name != "Click")

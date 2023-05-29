@@ -2,6 +2,8 @@ using DonRun3D.Player;
 using DonRun3D.World.Column;
 using DotRun3d.Player;
 using System;
+using System.Collections.Generic;
+using DotRun3d.Scripts.World;
 using UnityEngine;
 using Zenject;
 
@@ -10,14 +12,14 @@ public class GameContainerInstaller : ScriptableObjectInstaller<GameContainerIns
 {
     [SerializeField] private PlayerView _playerView;
 
-    [SerializeField] private Columns _columnData;
+
+    [SerializeField] private WorldData worldData;
 
     public override void InstallBindings()
     {
         Container.Bind<IPlayerView>().FromComponentsInNewPrefab(_playerView).AsSingle();
-
-        Container.Bind<Columns>().FromInstance(_columnData).AsSingle();
-
+        
+        Container.Bind<WorldData>().FromInstance(worldData).AsSingle();
     }
 
 }
